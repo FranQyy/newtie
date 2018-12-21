@@ -14,8 +14,14 @@ const CustomLayout = (props) => {
       <Sider>
         <Link to="/">Home</Link>
         <Link to="/">List</Link>
-        <Link to="/login">Login</Link>
+      {
+        this.props.isAuthenticated ?
 
+        <Link to="/login">Login</Link>
+        :
+        <Link to="/logout">Logout</Link>
+
+      }
       </Sider>
       <Layout>
         <Header>Header</Header>

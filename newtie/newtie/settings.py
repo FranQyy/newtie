@@ -49,8 +49,15 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
-    
+
+    'rest_auth',
+    'rest_framework.authtoken',
+
+    'rest_auth.registration',
+
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -147,7 +154,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
 
 #django-allauth registraion settings
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -157,8 +163,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/' #or any other page

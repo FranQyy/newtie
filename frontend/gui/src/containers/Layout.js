@@ -1,6 +1,9 @@
-import React from 'react';
-import { Layout } from 'antd';
-import { Link } from 'react-router-dom';
+
+import React from "react";
+import { Layout, Menu, Breadcrumb } from "antd";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../store/actions/auth";
 
 import '../Layout.css';
 
@@ -8,30 +11,43 @@ const {
   Header, Footer, Sider, Content,
 } = Layout;
 
-const CustomLayout = (props) => {
+class CustomLayout extends React.Component {
+  render() {
     return(
     <Layout>
       <Sider>
-        <Link to="/">Home</Link>
-        <Link to="/">List</Link>
+        <Link to="/">Home </Link>
+        <Link to="/">List </Link>
       {
         this.props.isAuthenticated ?
-
-        <Link to="/login">Login</Link>
+        <Link to="/logout" onClick={this.props.logout}>Logout</Link>
         :
-        <Link to="/logout">Logout</Link>
+        <Link to="/login">Login </Link>
+
 
       }
       </Sider>
       <Layout>
         <Header>Header</Header>
         <Content>
-            <div>{props.children}</div>
+            <div>{this.props.children}</div>
         </Content>
         <Footer>Footer</Footer>
       </Layout>
     </Layout>
     );
 }
+}
 
-export default CustomLayout;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(actions.logout())
+  };
+};
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(CustomLayout)
+);

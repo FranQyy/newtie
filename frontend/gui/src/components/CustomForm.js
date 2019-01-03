@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 import {
     Form, Input, Button,
@@ -13,6 +14,13 @@ import {
         // event.preventDefault();
         const title = event.target.elements.title.value;
         const slug = event.target.elements.slug.value;
+
+        // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        // axios.defaults.xsrfCookieName = "csrftoken";
+        axios.defaults.headers = {
+          "Content-Type": "application/json",
+          Authorization: `Token ${this.props.token}`,
+        };
 
         switch ( requestType ){
 
@@ -58,4 +66,10 @@ import {
     }
   }
 
-export default CustomForm;
+  const mapStateToProps = state => {
+    return{
+      token: state.token
+    };
+  };
+
+export default connect(mapStateToProps)(CustomForm);

@@ -11,7 +11,7 @@ const Subjects = (props) => {
         <List.Item>
           <List.Item.Meta
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            title={<a href={`http://127.0.0.1:3000/${item.id}`}>{item.title}</a>}
+            title={<a href={`http://127.0.0.1:3000/subjects/${item.id}`}>{item.title}</a>}
             description={item.created_at}
           />
         </List.Item>

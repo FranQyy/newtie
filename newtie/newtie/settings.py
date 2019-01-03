@@ -165,18 +165,21 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 
 # ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
 # ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day
+# ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+# ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/' #or any other page
 LOGIN_REDIRECT_URL = '/accounts/email/' # redirects to profile page if not configured.
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-        'rest_framework.permissions.AllowAny'
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #     # 'rest_framework.permissions.AllowAny'
+    # ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
